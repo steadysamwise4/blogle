@@ -1,13 +1,16 @@
 <template>
   <section class="post-list">
     <PostPreview
-      id="1"
+      v-for="post in posts"
+      :key="post.id"
+      :id="post.id"
       :is-admin="isAdmin"
-      title="Hello there!"
-      previewText="This is my first post."
-      thumbnail="https://www.bbva.com/wp-content/uploads/2017/08/innovacion-bbva-100817-1024x551.jpg"
+      :title="post.title"
+      :previewText="post.previewText"
+      :thumbnail="post.thumbnail"
     />
-    <PostPreview
+    <!-- <PostPreview
+    "https://www.bbva.com/wp-content/uploads/2017/08/innovacion-bbva-100817-1024x551.jpg"
       id="2"
       :is-admin="isAdmin"
       title="Hello there, the second time!"
@@ -20,7 +23,7 @@
       title="Hi!"
       previewText="This is my third post."
       thumbnail="https://imageio.forbes.com/specials-images/dam/imageserve/930116744/960x0.jpg?format=jpg&width=960"
-    />
+    /> -->
   </section>
 </template>
 
@@ -31,8 +34,14 @@ export default {
     PostPreview,
   },
   props: {
-    isAdmin: Boolean,
-    default: false,
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    posts: {
+      type: Array,
+      required: true,
+    },
   },
 };
 </script>
